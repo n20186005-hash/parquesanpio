@@ -11,10 +11,10 @@ const photoNight = 'https://www.bucaramanga.gov.co/wp-content/uploads/2022/09/il
 
 const placeSchema = {
   '@context': 'https://schema.org',
-  '@type': 'TouristAttraction',
-  name: 'Parque San Pío',
-  alternateName: 'Saint Pío Park',
-  description: 'Parque urbano de Cabecera del Llano, Bucaramanga, conocido por su arbolado, senderos y la escultura Mujer de pie, desnuda de Fernando Botero.',
+  '@type': ['TouristAttraction', 'Park', 'Place'],
+  name: 'Parque Guillermo Sorzano (Parque San Pío)',
+  alternateName: ['Parque San Pío', 'Saint Pío Park'],
+  description: 'Parque urbano de Cabecera del Llano, Bucaramanga, conocido por su arbolado, senderos de ladrillo y la escultura Mujer de pie, desnuda de Fernando Botero.',
   ...(canonicalUrl ? { url: canonicalUrl } : {}),
   telephone: '+573184127124',
   address: {
@@ -38,7 +38,7 @@ const placeSchema = {
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '4.5',
-    reviewCount: '15967',
+    reviewCount: '15981',
     bestRating: '5'
   },
   isAccessibleForFree: true,
@@ -89,13 +89,13 @@ const faqSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#123f33" />
-    <meta name="description" content="Guía independiente del Parque San Pío en Bucaramanga: Botero, cómo llegar, horarios, costos, parqueadero, comida y lugares cercanos." />
-    <title>Parque San Pío | Guía para visitar este oasis de Cabecera, Bucaramanga</title>
+    <meta name="description" content="Parque San Pío (Guillermo Sorzano) en Bucaramanga: dirección Cra. 33 #45, parqueadero, horarios y opiniones (4,5 ★). Qué hacer en Cabecera del Llano." />
+    <title>Parque San Pío (Guillermo Sorzano), Bucaramanga: guía, ubicación y parqueadero</title>
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_CO" />
-    <meta property="og:title" content="Parque San Pío · Bucaramanga" />
-    <meta property="og:description" content="Arte, sombra y vida de barrio en el corazón de Cabecera." />
+    <meta property="og:title" content="Parque San Pío (Guillermo Sorzano), Bucaramanga" />
+    <meta property="og:description" content="Dirección, parqueadero, horarios y opiniones del parque urbano de Cabecera con la escultura de Botero." />
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
     <meta name="twitter:card" content="summary_large_image" />
@@ -142,7 +142,7 @@ const faqSchema = {
               <a class="btn btn-secondary" href={mapUrl} target="_blank" rel="noreferrer">Cómo llegar ↗</a>
             </div>
             <div class="hero-facts" aria-label="Datos rápidos">
-              <span>★ 4,5 · 15.967 reseñas</span>
+              <span>★ 4,5 · 15.981 reseñas</span>
               <span>Entrada libre</span>
               <span>45–90 min sugeridos</span>
               <span>Cra. 33 con Calle 45</span>
@@ -273,10 +273,10 @@ const faqSchema = {
       <section class="section map-section" id="mapa">
         <div class="wrap map-shell">
           <div class="map-copy">
-            <div class="kicker">Ubicación</div>
+            <div class="kicker">Ubicación y dirección</div>
             <h2>En el corazón de Cabecera.</h2>
             <address>Cra. 33 #45<br />Cabecera del Llano<br />Bucaramanga, Santander, Colombia</address>
-            <p class="coords">7.118641, −73.112943 · Plus Code 4V9Q+FV</p>
+            <p class="coords">7.118641, −73.112943 · Plus Code 4V9Q+CR</p>
             <a class="btn btn-primary" href={mapUrl} target="_blank" rel="noreferrer">Abrir en Google Maps ↗</a>
           </div>
           <div class="map-frame">

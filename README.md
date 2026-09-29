@@ -21,23 +21,23 @@ No hay base de datos, login ni CMS.
 Edita únicamente esta línea en `astro.config.ts`:
 
 ```ts
-const site = '';
+const site = 'https://parquesanpio.com';
 ```
 
-Ejemplo cuando ya tengas dominio (sustituye por el real):
+Con el dominio ya conectado:
 
-```ts
-const site = 'https://tu-dominio-real.tld';
-```
+- el build emite `canonical` absoluto y `og:url`;
+- la URL del JSON-LD se incluye;
+- `@astrojs/sitemap` se activa y `public/robots.txt` apunta a `sitemap-index.xml`.
 
-Mientras `site` esté vacío:
+Si en algún momento necesitas un build local sin dominio, deja `site = ''`:
 
 - el build sigue funcionando;
 - no se emite canonical absoluto ni `og:url`;
 - la URL del JSON-LD se omite;
 - `@astrojs/sitemap` no se activa.
 
-Cuando `site` tenga un dominio real, canonical, Open Graph, JSON-LD, OG image y sitemap se derivan de `Astro.site`. No hay dominio de producción duplicado en otras partes del proyecto.
+El dominio canónico se deriva de `Astro.site`. No hay dominio de producción duplicado en otras partes del proyecto.
 
 ## Cloudflare Workers
 

@@ -3,8 +3,8 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // ÚNICO punto para configurar el dominio canónico.
-// Déjalo vacío hasta que el dominio definitivo esté conectado.
-const site = '';
+// Con el dominio ya conectado, se fijan canonical, og:url y el sitemap.
+const site = 'https://parquesanpio.com';
 
 export default defineConfig({
   site: site || undefined,
