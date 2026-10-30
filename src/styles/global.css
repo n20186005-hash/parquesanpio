@@ -143,7 +143,8 @@ details p { color:#d4ddd8; max-width:850px; }
 .footer img { width:190px; }
 
 @media (max-width: 900px) {
-  .nav { display:none; }
+  .header-inner { flex-direction:column; align-items:flex-start; gap:.65rem; padding:.8rem 0; }
+  .nav { display:flex; flex-wrap:wrap; gap:.75rem; font-size:.85rem; }
   .hero-grid, .section-heading, .story-grid, .map-shell { grid-template-columns:1fr; }
   .hero-grid { padding-top:3rem; }
   .photo-composition { min-height:520px; }
@@ -161,3 +162,10 @@ details p { color:#d4ddd8; max-width:850px; }
   .visit-grid, .info-split, .local-grid { grid-template-columns:1fr; }
   .section { padding:4.3rem 0; }
 }
+
+section[id] { scroll-margin-top: 10rem; }
+.guide-illustration { margin:0; }
+.guide-illustration img { width:100%;height:auto;border-radius:3rem 3rem 1rem 1rem; }
+.guide-illustration figcaption { margin-top:.8rem;font-size:.85rem;color:var(--muted); }
+a:focus-visible, summary:focus-visible { outline:3px solid var(--clay);outline-offset:4px; }
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }

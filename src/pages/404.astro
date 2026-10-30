@@ -1,0 +1,5 @@
+---
+import '../styles/global.css';
+const canonical = new URL('/404.html', Astro.site).href;
+---
+<!doctype html><html lang="es-CO"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="robots" content="noindex,follow"/><title>Página no encontrada | Guía de Parque San Pío</title><meta name="description" content="La dirección solicitada no existe en esta guía independiente del Parque San Pío."/><link rel="canonical" href={canonical}/><link rel="icon" href="/icons/favicon.svg"/></head><body><main class="wrap section"><p>404</p><h1>Página no encontrada</h1><p>Esta dirección no existe en la guía de Parque San Pío, Bucaramanga.</p><a class="btn btn-primary" href="/">Volver a la guía</a></main></body></html>

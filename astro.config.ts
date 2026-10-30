@@ -8,7 +8,7 @@ const site = 'https://parquesanpio.com';
 
 export default defineConfig({
   site: site || undefined,
-  integrations: site ? [sitemap()] : [],
+  integrations: site ? [sitemap({filter: (page) => !/\/404(?:\.html|\/)?$/.test(new URL(page).pathname)})] : [],
   vite: {
     plugins: [tailwindcss()]
   }

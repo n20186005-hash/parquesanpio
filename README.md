@@ -1,68 +1,13 @@
-# Parque San Pío · Bucaramanga
+# Parque San Pío, Bucaramanga
 
-Micrositio editorial de una sola página, en español de Colombia, diseñado específicamente alrededor de tres rasgos del Parque San Pío: vegetación urbana, senderos de ladrillo y arte público.
+Independent nonprofit visitor information and public-education guide, in Spanish. No operator or municipal affiliation. Public sources and dated third-party Maps snapshot appear on the page; private search reports are not published.
 
-## Stack fijado
+## Preserved toolchain
 
-- Astro `7.3.2`
-- `@astrojs/check` `0.9.10`
-- `@astrojs/sitemap` `3.7.4`
-- Tailwind CSS `4.3.3`
-- `@tailwindcss/vite` `4.3.3`
-- TypeScript `6.0.3` (se evita TypeScript 7 para mantener compatibilidad con la cadena actual de Astro Check)
-- Wrangler `4.130.0`
-- pnpm `12.4.0`
-- Node.js LTS `24.21.0`
+Node 24.21.0, pnpm 12.4.0, Astro 7.3.2, sitemap 3.7.4, Tailwind 4.3.3, TypeScript 6.0.3, Astro check 0.9.10, Wrangler 4.130.0. Exact manifest and lock preserved, including existing esbuild/workerd build allowlist.
 
-No hay base de datos, login ni CMS.
+Use `pnpm install --frozen-lockfile`, `pnpm run check`, `pnpm run build`, then `pnpm exec wrangler deploy --dry-run` for local preparation. A dry-run is not deployment.
 
-## Dominio: una sola configuración
+Static Astro architecture remains. A small native ASSETS Worker handles canonical HTTP/www redirects and genuine 404s. Domain in astro.config.ts and canonical Worker host must agree. Wrangler project is parquesanpio, matching the existing Cloudflare project; no new domain bindings.
 
-Edita únicamente esta línea en `astro.config.ts`:
-
-```ts
-const site = 'https://parquesanpio.com';
-```
-
-Con el dominio ya conectado:
-
-- el build emite `canonical` absoluto y `og:url`;
-- la URL del JSON-LD se incluye;
-- `@astrojs/sitemap` se activa y `public/robots.txt` apunta a `sitemap-index.xml`.
-
-Si en algún momento necesitas un build local sin dominio, deja `site = ''`:
-
-- el build sigue funcionando;
-- no se emite canonical absoluto ni `og:url`;
-- la URL del JSON-LD se omite;
-- `@astrojs/sitemap` no se activa.
-
-El dominio canónico se deriva de `Astro.site`. No hay dominio de producción duplicado en otras partes del proyecto.
-
-## Cloudflare Workers
-
-El proyecto es totalmente estático. Se despliega con Cloudflare Workers Static Assets mediante `wrangler deploy`, sin añadir SSR innecesario. `wrangler.jsonc` apunta a `./dist`.
-
-```bash
-corepack enable
-pnpm install --frozen-lockfile
-pnpm check
-pnpm build
-pnpm deploy
-```
-
-## Fotos
-
-El sitio usa fotografías reales. Este entorno no permitió descargar binarios externos, por eso las fotos se conservan como URLs de origen con atribución en `PHOTO-SOURCES.md`. Logo, favicon y OG artwork sí son archivos locales incluidos en el proyecto.
-
-## GA4
-
-ID configurado: `G-HXM22WWPKP`.
-
-## Mapa
-
-El iframe de Google Maps usa español latino (`es-419`) y región Colombia (`co`) en lugar del locale chino del fragmento original.
-
-## Comprobaciones de contenido
-
-No se incluyen dominios de ejemplo, `localhost`, `chrome-extension://`, scripts de extensiones ni `lastmod` inventados. El sitemap solo se genera cuando `site` es real.
+Photograph removals and original illustration scope are documented in PHOTO-SOURCES.md. GA4 remains automatic; the page discloses actual analytics, map and hosting connections without promising consent controls.

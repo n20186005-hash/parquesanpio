@@ -5,67 +5,52 @@ const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toStri
 const ogImageUrl = Astro.site ? new URL('/images/og-cover.png', Astro.site).toString() : undefined;
 
 const mapUrl = 'https://maps.app.goo.gl/3t2apWjTJbkW2L4x5';
-const photoHero = 'https://bucketlist2life.com/_ipx/f_webp/blogposts/bucaramanga-travel-guide/pio.jpg';
-const photoPlay = 'https://i0.wp.com/www.emisoracultural.gov.co/wp-content/uploads/2023/03/PARQUE-SAN-PIO.jpeg?fit=1024%2C684&ssl=1';
-const photoNight = 'https://www.bucaramanga.gov.co/wp-content/uploads/2022/09/iluminacion-parque-san-pio.jpg';
+const photoHero = '/images/park-illustration.svg';
 
 const placeSchema = {
   '@context': 'https://schema.org',
   '@type': ['TouristAttraction', 'Park', 'Place'],
+  '@id': `${canonicalUrl}#park`,
   name: 'Parque Guillermo Sorzano (Parque San Pío)',
   alternateName: ['Parque San Pío', 'Saint Pío Park'],
   description: 'Parque urbano de Cabecera del Llano, Bucaramanga, conocido por su arbolado, senderos de ladrillo y la escultura Mujer de pie, desnuda de Fernando Botero.',
   ...(canonicalUrl ? { url: canonicalUrl } : {}),
-  telephone: '+573184127124',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Cra. 33 #45, Cabecera del Llano',
     addressLocality: 'Bucaramanga',
     addressRegion: 'Santander',
     addressCountry: 'CO'
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 7.118640815957353,
-    longitude: -73.11294282307308
+    latitude: 7.1185637,
+    longitude: -73.1104339
   },
-  openingHoursSpecification: [{
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
-    opens: '00:00',
-    closes: '23:59'
-  }],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.5',
-    reviewCount: '15981',
-    bestRating: '5'
-  },
-  isAccessibleForFree: true,
-  image: [photoHero, photoPlay, photoNight],
   sameAs: [mapUrl]
 };
 
 const faqItems = [
   {
     q: '¿La entrada al Parque San Pío tiene costo?',
-    a: 'No. Es un espacio público de acceso libre. Actividades especiales o servicios de terceros alrededor del parque pueden tener costos propios.'
+    a: 'Las fuentes describen un parque público, no un recinto con boletería. No se verificó una tarifa municipal vigente para actividades o servicios: confirma cualquier cobro anunciado y las condiciones del evento antes de pagar.'
   },
+  {q: '¿Dónde queda el Parque San Pío y es lo mismo que la iglesia?', a: 'El parque está en Cabecera del Llano, Bucaramanga. Maps lista Cra. 33 #45 como referencia; no verificamos un número de puerta ni una entrada exacta. Confirma el acceso antes de salir. La parroquia San Pío X es otro destino: el mapa de esta guía corresponde al parque, no a horarios de misas ni servicios parroquiales.'},
+  {q: '¿El Parque San Pío abre las 24 horas?', a: 'Google Maps mostraba acceso de 24 horas el 29 de octubre de 2026; Santander Travel también publica ese horario. Es una referencia del espacio público, no una garantía de acceso a cada zona, juego, servicio o evento. Consulta avisos y cierres locales antes de salir.'},
   {
     q: '¿Cuál es el mejor momento para visitarlo?',
     a: 'La mañana y el final de la tarde suelen ser agradables por la sombra, la luz y el ambiente del sector. Si vas de noche, usa las precauciones habituales de una zona urbana.'
   },
   {
     q: '¿Cuánto tiempo conviene quedarse?',
-    a: 'Entre 45 y 90 minutos suele bastar para caminar con calma, ver la obra de Botero, descansar bajo los árboles y combinar la visita con un café o una comida en Cabecera.'
+    a: 'Como propuesta editorial, reserva 45–90 minutos para un paseo pausado; adapta el tiempo a las zonas abiertas, tu movilidad y el clima. No es una duración oficial ni una garantía de disponibilidad de obras o servicios.'
   },
   {
     q: '¿Hay parqueadero dentro del parque?',
-    a: 'El parque no funciona como estacionamiento. En las calles y manzanas cercanas hay parqueaderos privados; sus cupos, tarifas y horarios pueden cambiar, por lo que conviene confirmarlos al llegar.'
+    a: 'Esta guía no verifica parqueadero propio ni disponibilidad de operadores cercanos. Busca un estacionamiento autorizado y confirma dirección de entrada, tarifa, horario y cupo antes de llegar.'
   },
   {
     q: '¿Qué obra de Fernando Botero está en San Pío?',
-    a: 'La escultura se titula “Mujer de pie, desnuda”. Es una de las piezas de arte público más reconocibles de Bucaramanga y fue incorporada al patrimonio municipal en 2010.'
+    a: 'La escultura se titula “Mujer de pie, desnuda”. Es una de las piezas de arte público más reconocibles de Bucaramanga y fue instalada en 2010 y declarada bien de interés cultural municipal en 2013, según el IMCT.'
   },
   {
     q: '¿Se puede llegar en transporte público?',
@@ -76,6 +61,7 @@ const faqItems = [
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  '@id': `${canonicalUrl}#faq`,
   mainEntity: faqItems.map((item) => ({
     '@type': 'Question',
     name: item.q,
@@ -89,22 +75,27 @@ const faqSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#123f33" />
-    <meta name="description" content="Parque San Pío (Guillermo Sorzano) en Bucaramanga: dirección Cra. 33 #45, parqueadero, horarios y opiniones (4,5 ★). Qué hacer en Cabecera del Llano." />
-    <title>Parque San Pío (Guillermo Sorzano), Bucaramanga: guía, ubicación y parqueadero</title>
+    <meta name="description" content="Parque San Pío (Guillermo Sorzano) en Bucaramanga: ubicación en Cabecera, obra de Botero y consejos para verificar acceso, parqueadero y servicios antes de ir." />
+    <title>Parque San Pío, Bucaramanga: ubicación, acceso y visita</title>
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_CO" />
     <meta property="og:title" content="Parque San Pío (Guillermo Sorzano), Bucaramanga" />
-    <meta property="og:description" content="Dirección, parqueadero, horarios y opiniones del parque urbano de Cabecera con la escultura de Botero." />
+    <meta property="og:description" content="Ubicación y arte público de San Pío. Consulta fuentes y advertencias para verificar acceso y servicios antes de viajar." />
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    <meta property="og:image:alt" content="Composición gráfica de hojas y senderos, no fotografía del parque" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Parque San Pío, Bucaramanga: ubicación y visita" />
+    <meta name="twitter:description" content="Arte público y ubicación; referencias para verificar acceso y servicios antes de ir." />
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+    <meta name="twitter:image:alt" content="Composición gráfica de hojas y senderos, no fotografía del parque" />
     <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
-    <script type="application/ld+json" set:html={JSON.stringify(placeSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(placeSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP" is:inline></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -135,29 +126,23 @@ const faqSchema = {
         <div class="hero-grid">
           <div>
             <div class="kicker">Cabecera · Bucaramanga</div>
-            <h1>San Pío,<br />pausa verde.</h1>
-            <p class="hero-lede">Un parque para caminar bajo árboles maduros, encontrarse con arte de Fernando Botero y sentir el pulso cotidiano de uno de los sectores más caminables de Bucaramanga.</p>
+            <h1>Parque San Pío,<br />Bucaramanga.</h1>
+            <p class="hero-lede">Un parque para caminar bajo árboles maduros, encontrarse con arte de Fernando Botero y sentir el pulso cotidiano de Cabecera del Llano.</p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="#visita">Planear la visita</a>
               <a class="btn btn-secondary" href={mapUrl} target="_blank" rel="noreferrer">Cómo llegar ↗</a>
             </div>
             <div class="hero-facts" aria-label="Datos rápidos">
-              <span>★ 4,5 · 15.981 reseñas</span>
-              <span>Entrada libre</span>
-              <span>45–90 min sugeridos</span>
-              <span>Cra. 33 con Calle 45</span>
+              <span>Google Maps · ★ 4,5 · 16.003 reseñas · 29/10/2026</span>
+              <span>Acceso: verifica avisos locales</span>
+              <span>45–90 min · propuesta editorial</span>
+              <span>Maps: Cra. 33 #45 · referencia; confirma la entrada</span>
             </div>
           </div>
-          <div class="photo-composition" aria-label="Fotografías reales del Parque San Pío">
-            <div class="leaf-orbit" aria-hidden="true"></div>
-            <figure class="photo-main">
-              <img src={photoHero} alt="Escultura Mujer de pie, desnuda de Fernando Botero en el Parque San Pío" width="1200" height="900" loading="eager" fetchpriority="high" referrerpolicy="no-referrer" />
-            </figure>
-            <figure class="photo-small">
-              <img src={photoPlay} alt="Zona verde y juegos infantiles entre árboles del Parque San Pío" width="1024" height="684" loading="lazy" referrerpolicy="no-referrer" />
-            </figure>
-            <div class="botero-badge">Arte público<br />+ ciudad jardín</div>
-          </div>
+          <figure class="guide-illustration">
+            <img src={photoHero} alt="Ilustración abstracta de árboles y caminos; no representa instalaciones reales del parque" width="1000" height="900" fetchpriority="high" />
+            <figcaption>Ilustración original de esta guía · CC0. No es una fotografía ni un plano del parque.</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -168,7 +153,7 @@ const faqSchema = {
               <div class="kicker" style="color:var(--gold)">La identidad del parque</div>
               <h2>Donde el verde conversa con el bronce.</h2>
             </div>
-            <p>San Pío no necesita grandes monumentos ni recorridos rígidos: su carácter está en la escala humana, la sombra, los caminos de ladrillo y el contraste entre naturaleza urbana y arte público.</p>
+            <p>El Área Metropolitana de Bucaramanga identifica este espacio como Parque Guillermo Sorzano González, conocido como San Pío. Esta guía trata del parque de Cabecera, no de la parroquia del mismo nombre.</p>
           </div>
           <div class="story-grid">
             <article class="story-feature">
@@ -179,11 +164,11 @@ const faqSchema = {
             <div class="story-stack">
               <article class="story-card">
                 <h3>Más jardín, menos prisa</h3>
-                <p>Una intervención de paisajismo reportada por la Alcaldía incluyó la siembra de más de 3.000 plantas ornamentales y el mejoramiento del entorno de la escultura de mariposa de Mario Hernández.</p>
+                <p>Una intervención de paisajismo reportada por la Alcaldía incluyó la siembra de más de 3.000 plantas ornamentales y el mejoramiento del entorno de la escultura de mariposa donada por Mario Hernández.</p>
               </article>
               <article class="story-card">
                 <h3>Senderos para volver a caminar</h3>
-                <p>La recuperación del parque incorporó iluminación LED, restauración de más de 1.000 m² de senderos y mejoras posteriores en juegos, accesos peatonales y mobiliario urbano.</p>
+                <p>Las publicaciones municipales documentan intervenciones en senderos, iluminación y mobiliario. Son antecedentes de mantenimiento, no una certificación del estado actual de cada instalación; respeta cierres y señalización.</p>
               </article>
             </div>
           </div>
@@ -203,7 +188,7 @@ const faqSchema = {
             <article class="visit-item">
               <div class="icon" aria-hidden="true">◌</div>
               <h3>Entrada / costo</h3>
-              <p>Acceso libre al parque. No hay boleto de entrada. Actividades especiales o servicios privados pueden cobrar por separado.</p>
+              <p>Es un parque público. No se verificó una tarifa municipal vigente para actividades o servicios; confirma cualquier cobro anunciado y sus condiciones antes de pagar.</p>
             </article>
             <article class="visit-item">
               <div class="icon" aria-hidden="true">☀</div>
@@ -213,30 +198,18 @@ const faqSchema = {
             <article class="visit-item">
               <div class="icon" aria-hidden="true">⌁</div>
               <h3>Tiempo sugerido</h3>
-              <p>45–90 minutos para una vuelta tranquila, fotografías, descanso y una mirada atenta a las esculturas.</p>
+              <p>Propuesta editorial: 45–90 minutos para una pausa tranquila, ajustando el recorrido al clima y a las zonas abiertas.</p>
             </article>
             <article class="visit-item">
               <div class="icon" aria-hidden="true">24</div>
               <h3>Acceso</h3>
-              <p>El espacio público figura con acceso continuo. Mantenimiento, eventos o cierres operativos pueden afectar zonas puntuales.</p>
+              <p>Maps mostraba 24 horas el 29 de octubre de 2026; Santander Travel también lo publica. No garantiza apertura de todas las zonas, juegos o servicios: mantenimiento y eventos pueden imponer cierres.</p>
             </article>
           </div>
           <p class="note"><strong>Consejo local:</strong> Bucaramanga tiene clima cálido; lleva agua y protección solar aunque el parque sea sombreado. Para la noche, aplica las precauciones normales de cualquier espacio público urbano.</p>
         </div>
       </section>
 
-      <section class="gallery-band" aria-label="Galería del parque">
-        <div class="wrap gallery-grid">
-          <figure>
-            <img src={photoNight} alt="Vista nocturna iluminada del Parque San Pío" width="1600" height="900" loading="lazy" referrerpolicy="no-referrer" />
-            <figcaption>Iluminación del parque · foto de prensa de la Alcaldía de Bucaramanga</figcaption>
-          </figure>
-          <figure>
-            <img src={photoPlay} alt="Juegos infantiles y vegetación del Parque San Pío" width="1024" height="684" loading="lazy" referrerpolicy="no-referrer" />
-            <figcaption>Vida de parque bajo el dosel urbano</figcaption>
-          </figure>
-        </div>
-      </section>
 
       <section class="section" id="movilidad">
         <div class="wrap">
@@ -252,7 +225,7 @@ const faqSchema = {
               <h3>Cómo llegar</h3>
               <ul>
                 <li><strong>A pie:</strong> una buena opción si ya estás en Cabecera; las cuadras cercanas concentran comercio, restaurantes y cafés.</li>
-                <li><strong>Taxi o app:</strong> usa “Parque San Pío” o la dirección Cra. 33 #45 como destino.</li>
+                <li><strong>Taxi o app:</strong> busca “Parque San Pío” y confirma el punto de llegada. Maps lista Cra. 33 #45 como referencia, no como entrada exacta verificada por esta guía.</li>
                 <li><strong>Bus:</strong> el sector cuenta con transporte urbano; consulta la ruta vigente el mismo día porque recorridos y paradas pueden cambiar.</li>
                 <li><strong>Bicicleta:</strong> llega con precaución por vías urbanas y asegura la bicicleta únicamente en un punto permitido.</li>
               </ul>
@@ -261,7 +234,7 @@ const faqSchema = {
               <h3>Parqueadero</h3>
               <ul>
                 <li>El parque en sí no es un estacionamiento.</li>
-                <li>Hay parqueaderos privados en las manzanas de Cabecera; uno de los puntos señalados en directorios locales está en el entorno de la Cra. 35A con Calle 45.</li>
+                <li>Busca un estacionamiento autorizado y comprueba su entrada, tarifa y horario; esta guía no confirma operadores, cupos ni parqueadero propio del parque.</li>
                 <li>No se publican aquí tarifas exactas porque cambian con frecuencia: confirma precio, horario y cupo al llegar.</li>
                 <li>Evita dejar objetos visibles dentro del vehículo y respeta las restricciones de estacionamiento en vía.</li>
               </ul>
@@ -275,13 +248,14 @@ const faqSchema = {
           <div class="map-copy">
             <div class="kicker">Ubicación y dirección</div>
             <h2>En el corazón de Cabecera.</h2>
-            <address>Cra. 33 #45<br />Cabecera del Llano<br />Bucaramanga, Santander, Colombia</address>
-            <p class="coords">7.118641, −73.112943 · Plus Code 4V9Q+CR</p>
+            <address>Cabecera del Llano<br />Bucaramanga, Santander, Colombia</address>
+            <p>Referencia listada en Google Maps: Cra. 33 #45. No es un número de puerta ni una entrada exacta verificados por esta guía; confirma el acceso antes de viajar.</p>
+            <p class="coords">7.1185637, −73.1104339 · punto de referencia</p>
             <a class="btn btn-primary" href={mapUrl} target="_blank" rel="noreferrer">Abrir en Google Maps ↗</a>
           </div>
           <div class="map-frame">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7036.616756437815!2d-73.11294282307308!3d7.118640815957353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e683fe064f93ebf%3A0xbc42f072c47c5ffa!2sSaint%20P%C3%ADo%20Park!5e1!3m2!1ses-419!2sco!4v1789089993252!5m2!1ses-419!2sco"
+              src="https://maps.google.com/maps?q=7.1185637,-73.1104339&amp;hl=es&amp;z=17&amp;output=embed"
               title="Mapa de Parque San Pío, Bucaramanga"
               loading="lazy"
               allowfullscreen
@@ -299,20 +273,9 @@ const faqSchema = {
             </div>
             <p>Cabecera permite convertir una visita corta al parque en una tarde completa. Estas opciones están en el entorno del sector; verifica horarios y disponibilidad antes de ir.</p>
           </div>
-          <h3 style="font-size:2rem;margin:0 0 1rem">Para comer cerca</h3>
-          <div class="local-grid">
-            <article class="local-item"><div class="local-index">01</div><div><h3>Mercagán Parrilla San Pío</h3><p>Parrilla santandereana y carnes; una opción cercana para convertir el paseo en almuerzo o cena.</p></div></article>
-            <article class="local-item"><div class="local-index">02</div><div><h3>Crepes & Waffles</h3><p>Alternativa casual junto al entorno de San Pío, útil para una comida ligera o postre.</p></div></article>
-            <article class="local-item"><div class="local-index">03</div><div><h3>Cafetopía</h3><p>Café de especialidad en Cabecera para hacer una pausa antes o después del parque.</p></div></article>
-            <article class="local-item"><div class="local-index">04</div><div><h3>San Marzano</h3><p>Cocina italiana y pizza en las calles inmediatas del sector.</p></div></article>
-          </div>
-
-          <h3 style="font-size:2rem;margin:3.2rem 0 1rem">Otros lugares para enlazar</h3>
-          <div class="local-grid">
-            <article class="local-item"><div class="local-index">A</div><div><h3>Parque Las Palmas</h3><p>Otra pequeña pausa verde de Cabecera, rodeada de cafés y restaurantes.</p></div></article>
-            <article class="local-item"><div class="local-index">B</div><div><h3>Parque Ecológico La Flora</h3><p>Una opción con sensación más natural para quien quiera ampliar la dosis de verde urbano.</p></div></article>
-            <article class="local-item"><div class="local-index">C</div><div><h3>Parque Carlos Enrique Virviescas</h3><p>Espacio barrial conocido también como Parque de los Perros, frecuentado para caminar y encontrarse.</p></div></article>
-            <article class="local-item"><div class="local-index">D</div><div><h3>Parque de los Niños</h3><p>Un parque urbano de mayor escala que puede complementar un recorrido por otros sectores de Bucaramanga.</p></div></article>
+          <div class="info-split">
+            <article class="info-panel"><h3>Elige la sucursal antes de caminar</h3><p>El portal Santander Travel menciona restaurantes y centros comerciales en el entorno. Busca el negocio concreto en su página oficial y confirma dirección, servicio y horario; no asumimos que una marca tenga una sucursal junto al parque.</p></article>
+            <article class="info-panel"><h3>Parque e iglesia son destinos distintos</h3><p>Esta guía corresponde al espacio público de San Pío, también llamado Guillermo Sorzano. Si buscas la parroquia San Pío X, confirma directamente su dirección y agenda: el mapa del parque no verifica misas ni atención parroquial.</p></article>
           </div>
         </div>
       </section>
@@ -337,24 +300,30 @@ const faqSchema = {
         </div>
       </section>
 
-      <section class="section sources" aria-labelledby="fuentes-title">
+      <section id="fuentes" class="section sources" aria-labelledby="fuentes-title">
         <div class="wrap">
           <h2 id="fuentes-title" style="font-size:2.2rem;color:var(--forest-deep)">Fuentes y criterio editorial</h2>
-          <p>La información cultural y de mejoras del parque se contrastó con publicaciones de la Alcaldía de Bucaramanga y del Instituto Municipal de Cultura y Turismo. Los datos operativos de comercios, transporte y parqueaderos cambian con mayor frecuencia; por eso esta guía evita fijar tarifas, rutas u horarios de terceros que puedan quedar obsoletos.</p>
+          <p>Revisión de fuentes: 29 de octubre de 2026. Google Maps mostraba 4,5/5 de 16.003 reseñas; son opiniones de terceros, no reseñas recopiladas por esta guía. La información cultural y de mejoras del parque se contrastó con publicaciones de la Alcaldía de Bucaramanga y del Instituto Municipal de Cultura y Turismo. Los datos operativos de comercios, transporte y parqueaderos cambian con mayor frecuencia; por eso esta guía evita fijar tarifas, rutas u horarios de terceros que puedan quedar obsoletos.</p>
           <p>
             <a href="https://www.bucaramanga.gov.co/noticias/parque-san-pio-respira-un-nuevo-aire/" target="_blank" rel="noreferrer">Paisajismo y recuperación del Parque San Pío ↗</a><br />
-            <a href="https://www.bucaramanga.gov.co/noticias/inicio-la-restauracion-de-la-gorda-botero-en-san-pio/" target="_blank" rel="noreferrer">Conservación de “Mujer de pie, desnuda” ↗</a><br />
+            <a href="https://imct.gov.co/se-inicia-la-restauracion-de-la-escultura-mujer-de-pie-desnuda-en-el-parque-san-pio/" target="_blank" rel="noreferrer">Conservación de “Mujer de pie, desnuda” ↗</a><br />
             <a href="https://www.bucaramanga.gov.co/noticias/el-parque-san-pio-se-reabre-por-completo-asi-lo-disfrutan-de-nuevo-los-bumangueses/" target="_blank" rel="noreferrer">Senderos, iluminación y espacio público ↗</a>
           </p>
-          <p><strong>Créditos de fotografía:</strong> Alcaldía de Bucaramanga / Diego Calderón (imagen nocturna); La Cultural FM (zona de juegos); Bucketlist2life (vista de la escultura). Las fotografías se cargan desde sus fuentes originales porque este entorno de entrega no permite redistribuir de forma segura archivos fotográficos de terceros.</p>
+          <p><a href="https://www.santander.travel/planes-13-m/15-escultura-la-mujer-de-pie-desnuda-o-gorda-de-botero.htm" target="_blank" rel="noreferrer">Santander Travel · ubicación de la escultura y horario publicado ↗</a><br /><a href="https://www.amb.gov.co/arte-y-creatividad-del-reciclaje-podran-apreciarse-este-viernes-en-primera-feria-al-parque/" target="_blank" rel="noreferrer">Área Metropolitana de Bucaramanga · nombre Guillermo Sorzano / San Pío ↗</a></p>
+          <p><strong>Imágenes:</strong> ilustración geométrica original de esta guía, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>; no es una fotografía, plano ni representación de las esculturas o instalaciones. Las fotografías anteriores se retiraron al no acreditarse permiso de reutilización.</p>
         </div>
       </section>
     </main>
 
+    <section class="section sources" id="privacidad" aria-labelledby="privacidad-title"><div class="wrap">
+      <h2 id="privacidad-title">Privacidad y uso de la guía</h2>
+      <p>Esta página carga Google Analytics (GA4) al abrirse para medir el uso del sitio; puede tratar identificadores, cookies y datos técnicos de conexión. El mapa integrado de Google conecta con un tercero sujeto a su propia política. Cloudflare aloja el sitio y puede tratar datos de conexión y rendimiento independientemente de Google Analytics. Consulta la <a href="https://policies.google.com/privacy">política de Google</a> y la <a href="https://www.cloudflare.com/privacypolicy/">política de Cloudflare</a>. El sitio no ofrece controles propios de consentimiento ni cuentas, reservas o formularios de contacto.</p>
+      <p>El contenido es orientación editorial, no información oficial, reserva ni garantía de apertura, seguridad o disponibilidad. Confirma avisos municipales y condiciones de cada servicio. Los enlaces externos tienen sus propias condiciones; el nombre y las obras se describen con fin informativo, sin afirmar afiliación ni permiso de sus titulares.</p>
+    </div></section>
     <footer class="footer">
       <div class="footer-inner">
         <img src="/icons/logo.svg" alt="Parque San Pío" width="420" height="104" loading="lazy" />
-        <small>Sitio informativo independiente. No es el sitio oficial del Parque San Pío, de la Alcaldía de Bucaramanga ni de ninguna entidad pública o comercio mencionado.</small>
+        <small>Guía independiente y sin ánimo de lucro de información turística y divulgación. No es el sitio oficial del Parque San Pío, de la Alcaldía de Bucaramanga ni de ninguna entidad pública o comercio mencionado. <a href="#privacidad">Privacidad y condiciones</a> · <a href="#fuentes">Fuentes</a></small>
       </div>
     </footer>
   </body>
