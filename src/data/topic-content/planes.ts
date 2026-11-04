@@ -278,7 +278,7 @@ export const PLANES_TOPICS: Topic[] = [
       },
       {
         q: '¿Las fotos de esta guía son del parque?',
-        a: 'La ilustración geométrica es original y no es una fotografía. La galería de la portada incluye vistas del parque y de la escultura con sus pies de imagen.'
+        a: 'La portada abre con una fotografía del parque. La ilustración geométrica es original y no es una fotografía; aparece en las galerías de las guías temáticas. Las vistas del parque y de la escultura se publican con sus pies de imagen.'
       }
     ],
     related: ['escultura-botero', 'fotos', 'atardecer-parque-san-pio', 'flora-y-arboles'],

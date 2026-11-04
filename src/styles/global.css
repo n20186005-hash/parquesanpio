@@ -164,9 +164,9 @@ details p { color:#d4ddd8; max-width:850px; }
 }
 
 section[id] { scroll-margin-top: 10rem; }
-.guide-illustration { margin:0; }
-.guide-illustration img { width:100%;height:auto;border-radius:3rem 3rem 1rem 1rem; }
-.guide-illustration figcaption { margin-top:.8rem;font-size:.85rem;color:var(--muted); }
+.hero-photo { margin:0; }
+.hero-photo img { width:100%;height:auto;aspect-ratio:10/9;object-fit:cover;display:block;border-radius:3rem 3rem 1rem 1rem; }
+.hero-photo figcaption { margin-top:.8rem;font-size:.85rem;color:var(--muted); }
 a:focus-visible, summary:focus-visible { outline:3px solid var(--clay);outline-offset:4px; }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
 
