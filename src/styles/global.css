@@ -223,6 +223,7 @@ a:focus-visible, summary:focus-visible { outline:3px solid var(--clay);outline-o
 .topic-faq details p { color:var(--muted) !important; margin:.7rem 0 0; }
 .related-list { list-style:none; margin:0 0 1.1rem; padding:0; display:grid; gap:.7rem; }
 .related-list li { border:1px solid var(--line); border-radius:14px; padding:.9rem 1rem; background:#fffaf1; }
+.related-list h3 { font-family:inherit; font-size:1.02rem; line-height:1.4; margin:0; }
 .related-list a { display:inline-block; min-height:32px; font-weight:800; text-decoration:none; }
 .related-list a:hover, .related-list a:focus-visible { text-decoration:underline; }
 .related-list span { display:block; font-size:.84rem; color:var(--muted); }
