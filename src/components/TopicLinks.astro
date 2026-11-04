@@ -1,0 +1,28 @@
+---
+import { TOPIC_GROUPS, topicsByGroup } from '../data/topics';
+import TopicLinkList from './TopicLinkList.astro';
+
+const groups = TOPIC_GROUPS.map((group) => ({ ...group, topics: topicsByGroup(group.id) }));
+---
+
+<section class="guides-section section" id="guias" aria-labelledby="guias-title">
+  <div class="wrap">
+    <div class="section-heading">
+      <div>
+        <div class="kicker">Guías de la visita</div>
+        <h2 id="guias-title">Respuestas concretas, una por página.</h2>
+      </div>
+      <p>Reunimos aquí las guías independientes sobre ubicación, llegada, parqueadero, fotos, la escultura de Botero, Cabecera del Llano y los alrededores. Cada una responde una pregunta distinta.</p>
+    </div>
+
+    <div class="guides-grid">
+      {groups.map((group) => (
+        <section class="guides-column" aria-labelledby={`guias-${group.id}`}>
+          <h3 id={`guias-${group.id}`}>{group.label}</h3>
+          <p class="guides-intro">{group.intro}</p>
+          <TopicLinkList topics={group.topics} />
+        </section>
+      ))}
+    </div>
+  </div>
+</section>

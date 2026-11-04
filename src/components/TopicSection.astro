@@ -1,0 +1,20 @@
+---
+import type { TopicSection as TopicSectionType } from '../data/topics';
+
+interface Props {
+  section: TopicSectionType;
+}
+
+const { section } = Astro.props;
+---
+
+<section class="topic-block">
+  <h2>{section.heading}</h2>
+  {section.paragraphs && section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+  {section.bullets && (
+    <ul class="topic-bullets">
+      {section.bullets.map((bullet) => <li>{bullet}</li>)}
+    </ul>
+  )}
+  {section.callout && <p class="topic-callout"><strong>Para tener en cuenta:</strong> {section.callout}</p>}
+</section>

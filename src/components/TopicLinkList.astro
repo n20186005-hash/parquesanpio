@@ -1,0 +1,19 @@
+---
+import type { Topic } from '../data/topics';
+import { topicPath } from '../data/topics';
+
+interface Props {
+  topics: Topic[];
+}
+
+const { topics } = Astro.props;
+---
+
+<ul class="guide-links">
+  {topics.map((topic) => (
+    <li>
+      <a href={topicPath(topic.slug)}>{topic.h1}</a>
+      <span>{topic.description}</span>
+    </li>
+  ))}
+</ul>
