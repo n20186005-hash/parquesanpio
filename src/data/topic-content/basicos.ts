@@ -190,14 +190,14 @@ export const BASICOS_TOPICS: Topic[] = [
       {
         heading: 'Ilustración original de la guía',
         paragraphs: [
-          'La composición geométrica de hojas y senderos que aparece en la portada es una ilustración creada para esta guía y ofrecida bajo CC0. No es una fotografía, ni un plano del parque, ni una representación de las esculturas o de las instalaciones reales.',
-          'Está pensada como recurso gráfico ligero para la primera carga, especialmente en móvil. Su carácter abstracto se indica también en el texto alternativo y en el pie de imagen.'
+          'La composición geométrica de hojas y senderos que aparece en las galerías de las guías temáticas es una ilustración creada para esta guía y ofrecida bajo CC0. No es una fotografía, ni un plano del parque, ni una representación de las esculturas o de las instalaciones reales.',
+          'Se usa como recurso gráfico ligero dentro de esas galerías; la portada, en cambio, abre con una fotografía de los senderos y el arbolado del parque. Su carácter abstracto se indica también en el texto alternativo y en el pie de imagen.'
         ]
       },
       {
         heading: 'Vistas del parque y de la escultura publicadas en la guía',
         paragraphs: [
-          'La galería de la portada muestra imágenes del Parque San Pío y de la escultura «Mujer de pie, desnuda», incluidas vistas de la zona verde, de la iluminación y de la pieza desde distintos ángulos. Se reproducen aquí con sus pies de imagen para que puedas identificar cada motivo.',
+          'La portada abre con una fotografía de los senderos de ladrillo y el arbolado del parque, y su galería muestra imágenes del Parque San Pío y de la escultura «Mujer de pie, desnuda», incluidas vistas de la zona verde, de la iluminación y de la pieza desde distintos ángulos. Se reproducen aquí con sus pies de imagen para que puedas identificar cada motivo.',
           'Los pies de imagen describen el contenido de forma general y no certifican el estado actual de las zonas fotografiadas. Un mantenimiento posterior, una intervención de conservación o un cierre pueden hacer que una vista no coincida con lo que encuentres el día de la visita.'
         ],
         callout: 'Esta guía no otorga ni verifica licencias sobre las fotografías; cada imagen externa está sujeta a las condiciones de su fuente.'

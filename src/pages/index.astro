@@ -6,7 +6,7 @@ const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toStri
 const ogImageUrl = Astro.site ? new URL('/images/og-cover.png', Astro.site).toString() : undefined;
 
 const mapUrl = 'https://maps.app.goo.gl/3t2apWjTJbkW2L4x5';
-const photoHero = '/images/park-illustration.svg';
+const photoHero = '/images/parque-san-pio-bucaramanga-garden.jpg';
 const photoBotero = 'https://bucketlist2life.com/_ipx/f_webp/blogposts/bucaramanga-travel-guide/pio.jpg';
 const photoPlay = 'https://i0.wp.com/www.emisoracultural.gov.co/wp-content/uploads/2023/03/PARQUE-SAN-PIO.jpeg?fit=1024%2C684&ssl=1';
 const photoNight = 'https://www.bucaramanga.gov.co/wp-content/uploads/2022/09/iluminacion-parque-san-pio.jpg';
@@ -147,9 +147,9 @@ const faqSchema = {
               <span>Maps: Cra. 33 #45 · referencia; confirma la entrada</span>
             </div>
           </div>
-          <figure class="guide-illustration">
-            <img src={photoHero} alt="Ilustración abstracta de árboles y caminos; no representa instalaciones reales del parque" width="1000" height="900" fetchpriority="high" />
-            <figcaption>Ilustración original de esta guía · CC0. No es una fotografía ni un plano del parque.</figcaption>
+          <figure class="hero-photo">
+            <img src={photoHero} alt="Senderos de ladrillo y árboles maduros en el Parque San Pío, Bucaramanga" width="640" height="400" fetchpriority="high" />
+            <figcaption>Fotografía del Parque San Pío: senderos de ladrillo y arbolado en Cabecera del Llano.</figcaption>
           </figure>
         </div>
       </section>
@@ -371,7 +371,7 @@ const faqSchema = {
             <a href="https://www.bucaramanga.gov.co/noticias/el-parque-san-pio-se-reabre-por-completo-asi-lo-disfrutan-de-nuevo-los-bumangueses/" target="_blank" rel="noreferrer">Senderos, iluminación y espacio público ↗</a>
           </p>
           <p><a href="https://www.santander.travel/planes-13-m/15-escultura-la-mujer-de-pie-desnuda-o-gorda-de-botero.htm" target="_blank" rel="noreferrer">Santander Travel · ubicación de la escultura y horario publicado ↗</a><br /><a href="https://www.amb.gov.co/arte-y-creatividad-del-reciclaje-podran-apreciarse-este-viernes-en-primera-feria-al-parque/" target="_blank" rel="noreferrer">Área Metropolitana de Bucaramanga · nombre Guillermo Sorzano / San Pío ↗</a></p>
-          <p><strong>Imágenes:</strong> ilustración geométrica original de esta guía, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>; no es una fotografía, plano ni representación de las esculturas o instalaciones. Las fotografías anteriores se retiraron al no acreditarse permiso de reutilización.</p>
+          <p><strong>Imágenes:</strong> la fotografía de portada y la galería muestran el Parque San Pío y la escultura «Mujer de pie, desnuda» con fin informativo; esta guía no afirma ni otorga una licencia de reutilización sobre esas fotografías y recomienda confirmar autoría y permisos antes de reutilizarlas. La composición geométrica original de esta guía, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, se conserva en las galerías de las guías temáticas y no es una fotografía, un plano ni una representación de las instalaciones reales.</p>
         </div>
       </section>
     </main>

@@ -214,6 +214,10 @@ if (!homeHtml.includes('id="fotografias"') || !homeHtml.includes('gallery-band')
   fail('Home photograph sections were removed');
 }
 if (!homeHtml.includes('id="guias"')) fail('Home guide cluster missing');
+const heroBlock = (homeHtml.match(/<section class="hero"[\s\S]*?<\/section>/) || [])[0] || '';
+if (!heroBlock.includes('src="/images/parque-san-pio-bucaramanga-garden.jpg"')) fail('Home hero photograph missing');
+if (!heroBlock.includes('class="hero-photo"')) fail('Home hero photo figure missing');
+if (/class="guide-illustration"/.test(homeHtml)) fail('Home hero still uses illustration markup');
 const cssFiles = walk(dist).filter((file) => file.endsWith('.css'));
 const cssText = cssFiles.map((file) => readFileSync(file, 'utf8')).join('\n');
 // Lightning CSS rewrites `@media (max-width:580px)` to `@media (width<=580px)`.
