@@ -1,0 +1,275 @@
+---
+import '../styles/global.css';
+import TopicSection from './TopicSection.astro';
+import {
+  SOURCES,
+  SITE_FACTS,
+  BEFORE_YOU_GO,
+  SOURCES_NOTE,
+  TOPIC_GROUPS,
+  topicPath,
+  getTopic,
+  type Topic
+} from '../data/topics';
+
+interface Props {
+  topic: Topic;
+}
+
+const { topic } = Astro.props;
+const site = Astro.site ?? new URL(SITE_FACTS.domain);
+const homeUrl = new URL('/', site).toString();
+const canonicalUrl = new URL(topicPath(topic.slug), site).toString();
+const ogImageUrl = new URL('/images/og-cover.png', site).toString();
+const parkId = `${homeUrl}#park`;
+
+const group = TOPIC_GROUPS.find((item) => item.id === topic.group)!;
+const pageSources = topic.sources.map((index) => SOURCES[index]);
+const relatedTopics = topic.related
+  .map((slug) => getTopic(slug))
+  .filter((item): item is Topic => Boolean(item));
+
+const galleryImages = [
+  { src: '/images/parque-san-pio-botero-sculpture.jpg', alt: 'Escultura de Botero en el Parque San Pío', caption: 'Escultura de Botero' },
+  { src: '/images/mujer-de-pie-desnuda-bucaramanga-side.jpg', alt: 'Vista lateral de la escultura Mujer de pie, desnuda', caption: 'Vista lateral de la escultura' },
+  { src: '/images/san-pio-botero-monument.jpg', alt: 'Monumento de Botero en San Pío', caption: 'Monumento de Botero' },
+  { src: '/images/parque-san-pio-bucaramanga-garden.jpg', alt: 'Zona verde del Parque San Pío', caption: 'Zona verde del parque' },
+  { src: '/images/parque-san-pio-botero-old-view.jpg', alt: 'Vista anterior del Parque San Pío y la escultura', caption: 'Vista anterior del parque' },
+  { src: '/images/park-illustration.svg', alt: 'Ilustración geométrica abstracta de árboles y caminos; no representa instalaciones reales del parque', caption: 'Ilustración geométrica original de la guía, ofrecida bajo CC0; no es una fotografía ni un plano del parque' }
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  '@id': `${canonicalUrl}#breadcrumb`,
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: homeUrl },
+    { '@type': 'ListItem', position: 2, name: group.label, item: `${homeUrl}#guias` },
+    { '@type': 'ListItem', position: 3, name: topic.h1, item: canonicalUrl }
+  ]
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${canonicalUrl}#faq`,
+  inLanguage: SITE_FACTS.language,
+  mainEntity: topic.faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a }
+  }))
+};
+
+const graph = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${homeUrl}#website`,
+    url: homeUrl,
+    name: 'Parque San Pío · Guía independiente',
+    inLanguage: SITE_FACTS.language
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': ['TouristAttraction', 'Park', 'Place'],
+    '@id': parkId,
+    name: 'Parque Guillermo Sorzano (Parque San Pío)',
+    alternateName: ['Parque San Pío', SITE_FACTS.alternateName],
+    description: 'Parque urbano de Cabecera del Llano, Bucaramanga, conocido por su arbolado, senderos de ladrillo y la escultura Mujer de pie, desnuda de Fernando Botero.',
+    url: homeUrl,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Cra. 33 #45 (referencia de zona)',
+      addressLocality: 'Bucaramanga',
+      addressRegion: 'Santander',
+      addressCountry: 'CO'
+    },
+    geo: { '@type': 'GeoCoordinates', latitude: 7.1185637, longitude: -73.1104339 },
+    sameAs: [SITE_FACTS.mapsUrl]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': topic.article ? 'Article' : 'WebPage',
+    '@id': `${canonicalUrl}#webpage`,
+    url: canonicalUrl,
+    name: topic.title,
+    headline: topic.h1,
+    description: topic.description,
+    inLanguage: SITE_FACTS.language,
+    datePublished: SITE_FACTS.updatedIso,
+    dateModified: SITE_FACTS.updatedIso,
+    isPartOf: { '@id': `${homeUrl}#website` },
+    about: { '@id': parkId },
+    breadcrumb: { '@id': `${canonicalUrl}#breadcrumb` },
+    author: { '@type': 'Organization', name: 'Guía independiente Parque San Pío', url: homeUrl },
+    publisher: { '@type': 'Organization', name: 'Guía independiente Parque San Pío', url: homeUrl }
+  },
+  breadcrumbSchema,
+  faqSchema
+];
+---
+<!doctype html>
+<html lang={SITE_FACTS.language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#123f33" />
+    <title>{topic.title}</title>
+    <meta name="description" content={topic.description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang={SITE_FACTS.language} href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+    <meta property="og:type" content={topic.article ? 'article' : 'website'} />
+    <meta property="og:locale" content={SITE_FACTS.ogLocale} />
+    <meta property="og:title" content={topic.title} />
+    <meta property="og:description" content={topic.description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content="Composición gráfica de hojas y senderos, no fotografía del parque" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={topic.title} />
+    <meta name="twitter:description" content={topic.description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })} />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HXM22WWPKP');
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Parque San Pío, inicio">
+          <img src="/icons/logo.svg" alt="Parque San Pío · Bucaramanga" width="420" height="104" />
+        </a>
+        <nav class="nav" aria-label="Navegación principal">
+          <a href="/">Inicio</a>
+          <a href="/#guias">Guías</a>
+          <a href="/#visita">Planear visita</a>
+          <a href="/#mapa">Mapa</a>
+          <a class="map-link" href={SITE_FACTS.mapsUrl} target="_blank" rel="noreferrer">Abrir mapa ↗</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <article class="topic-hero">
+        <div class="wrap">
+          <nav class="topic-breadcrumb" aria-label="Ruta de navegación">
+            <a href="/">Inicio</a><span aria-hidden="true">›</span>
+            <a href="/#guias">{group.label}</a><span aria-hidden="true">›</span>
+            <span aria-current="page">{topic.h1}</span>
+          </nav>
+          <div class="kicker">{group.label}</div>
+          <h1>{topic.h1}</h1>
+          <p class="topic-lead">{topic.lead}</p>
+        </div>
+      </article>
+
+      <div class="wrap topic-shell">
+        <aside class="topic-facts" aria-label="Datos de referencia del Parque San Pío">
+          <h2>Datos de referencia</h2>
+          <dl>
+            <dt>Sector</dt><dd>Cabecera del Llano, Bucaramanga, Santander</dd>
+            <dt>Referencia en Maps</dt><dd>Cra. 33 #45 (referencia de zona, no entrada verificada)</dd>
+            <dt>Coordenadas</dt><dd>{SITE_FACTS.coordinates}</dd>
+            <dt>Código Plus Code</dt><dd>{SITE_FACTS.plusCode}</dd>
+            <dt>Revisión editorial</dt><dd>{SITE_FACTS.updated}</dd>
+          </dl>
+          <a class="btn btn-primary topic-map-button" href={SITE_FACTS.mapsUrl} target="_blank" rel="noreferrer">Abrir en Google Maps ↗</a>
+          <p class="topic-facts-note">Confirma el punto de acceso y los avisos locales el mismo día de la visita.</p>
+        </aside>
+
+        <div class="topic-body">
+          {topic.sections.map((section) => <TopicSection section={section} />)}
+
+          {topic.gallery && (
+            <section class="topic-block">
+              <h2>Imágenes publicadas en esta guía</h2>
+              <p>Estas son las imágenes que la guía muestra en su portada y en esta página. Se reproducen con sus pies de imagen para identificar cada motivo; no certifican el estado actual de las zonas fotografiadas.</p>
+              <div class="topic-gallery">
+                {galleryImages.map((image) => (
+                  <figure>
+                    <img src={image.src} alt={image.alt} loading="lazy" />
+                    <figcaption>{image.caption}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {topic.map && (
+            <section class="topic-block">
+              <h2>Mapa y llegada</h2>
+              <p>El punto de referencia cartográfico sirve para situar el parque dentro de Cabecera del Llano. Úsalo para abrir el mapa, no como garantía de una entrada determinada.</p>
+              <div class="topic-map-frame">
+                <iframe
+                  src="https://maps.google.com/maps?q=7.1185637,-73.1104339&amp;hl=es&amp;z=17&amp;output=embed"
+                  title="Mapa de referencia del Parque San Pío, Bucaramanga"
+                  loading="lazy"
+                  allowfullscreen
+                  referrerpolicy="strict-origin-when-cross-origin"></iframe>
+              </div>
+              <p><a href={topicPath('ubicacion')}>Consulta la ubicación y la dirección de referencia</a> o <a href={topicPath('como-llegar')}>las opciones para llegar</a>.</p>
+            </section>
+          )}
+
+          <section class="topic-block">
+            <h2>Antes de salir</h2>
+            <p class="topic-callout">{BEFORE_YOU_GO}</p>
+          </section>
+
+          <section class="topic-block topic-faq" aria-labelledby="preguntas-title">
+            <h2 id="preguntas-title">Preguntas sobre esta guía</h2>
+            {topic.faqs.map((faq) => (
+              <details>
+                <summary>{faq.q}</summary>
+                <p>{faq.a}</p>
+              </details>
+            ))}
+          </section>
+
+          <section class="topic-block topic-related" aria-labelledby="relacionadas-title">
+            <h2 id="relacionadas-title">Páginas relacionadas</h2>
+            <ul class="related-list">
+              {relatedTopics.map((related) => (
+                <li>
+                  <h3><a href={topicPath(related.slug)}>{related.h1}</a></h3>
+                  <span>{related.description}</span>
+                </li>
+              ))}
+            </ul>
+            <p><a href="/#guias">Ver las guías de la visita</a></p>
+          </section>
+
+          <section class="topic-block topic-sources" aria-labelledby="fuentes-title">
+            <h2 id="fuentes-title">Fuentes y revisión</h2>
+            <ul>
+              {pageSources.map((source) => (
+                <li><a href={source.url} target="_blank" rel="noreferrer">{source.name} ↗</a></li>
+              ))}
+            </ul>
+            <p>{SOURCES_NOTE}</p>
+            <p><strong>Última revisión editorial:</strong> {SITE_FACTS.updated}.</p>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <img src="/icons/logo.svg" alt="Parque San Pío" width="420" height="104" loading="lazy" />
+        <small>Guía independiente y sin ánimo de lucro de información turística y divulgación. No es el sitio oficial del Parque San Pío, de la Alcaldía de Bucaramanga ni de ninguna entidad pública o comercio mencionado. <a href="/#privacidad">Privacidad y condiciones</a> · <a href="/#fuentes">Fuentes</a> · <a href="/#guias">Guías</a></small>
+      </div>
+    </footer>
+  </body>
+</html>
