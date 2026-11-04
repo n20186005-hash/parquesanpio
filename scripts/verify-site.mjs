@@ -110,6 +110,7 @@ for (const file of topicPages) {
   const h1Count = (html.match(/<h1[ >]/g) || []).length;
   if (h1Count !== 1) fail(`${label}: ${h1Count} H1 elements`);
   if ((html.match(/<h2[ >]/g) || []).length < 4) fail(`${label}: fewer than 4 H2 sections`);
+  if ((html.match(/<h3[ >]/g) || []).length < 3) fail(`${label}: fewer than 3 H3 subsections`);
   if (!/<html lang="es-CO"/.test(html)) fail(`${label}: wrong html lang`);
 
   // JSON-LD graph parses and contains the expected node types.
