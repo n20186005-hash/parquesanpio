@@ -109,6 +109,10 @@ export const SOURCES: { name: string; url: string }[] = [
   {
     name: 'Google Maps · ficha pública del Parque San Pío',
     url: SITE_FACTS.mapsUrl
+  },
+  {
+    name: 'Bucaramanga Histórica y Cultural (2012) · historia del parque, pp. 272–273',
+    url: 'https://es.scribd.com/document/432762152/Diseno-Producto-Historico-Cultural'
   }
 ];
 

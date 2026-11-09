@@ -37,7 +37,7 @@ export const BASICOS_TOPICS: Topic[] = [
       {
         heading: 'Un parque con varios nombres',
         paragraphs: [
-          'El Área Metropolitana de Bucaramanga identifica este espacio como Parque Guillermo Sorzano González, mientras que el nombre de uso corriente es Parque San Pío. En algunas fuentes en inglés aparece como Saint Pío Park.',
+          'El IMCT de Bucaramanga confirmó en su respuesta del 3 de noviembre de 2026 que el nombre oficial es Parque Guillermo Sorzano González y que Parque San Pío es la denominación de uso corriente. En algunas fuentes en inglés aparece como Saint Pío Park.',
           'Todos esos nombres apuntan al mismo espacio público de Cabecera. Si una búsqueda te lleva a horarios de misas, a un templo o a un establecimiento comercial, probablemente estás ante otro destino: conviene comprobar el mapa antes de desplazarte.'
         ]
       }
@@ -53,7 +53,7 @@ export const BASICOS_TOPICS: Topic[] = [
       },
       {
         q: '¿Por qué aparece también como Parque Guillermo Sorzano González?',
-        a: 'Es la denominación difundida por el Área Metropolitana de Bucaramanga. San Pío es el nombre popular; ambos se refieren al parque de Cabecera del Llano.'
+        a: 'Es el nombre oficial confirmado por el IMCT de Bucaramanga. San Pío es el nombre popular; ambos se refieren al parque de Cabecera del Llano.'
       }
     ],
     related: ['como-llegar', 'cabecera-del-llano', 'parque-vs-parroquia', 'parqueadero'],

@@ -74,7 +74,7 @@ const graph = [
     '@context': 'https://schema.org',
     '@type': ['TouristAttraction', 'Park', 'Place'],
     '@id': parkId,
-    name: 'Parque Guillermo Sorzano (Parque San Pío)',
+    name: 'Parque Guillermo Sorzano González',
     alternateName: ['Parque San Pío', SITE_FACTS.alternateName],
     description: 'Parque urbano de Cabecera del Llano, Bucaramanga, conocido por su arbolado, senderos de ladrillo y la escultura Mujer de pie, desnuda de Fernando Botero.',
     url: homeUrl,
@@ -179,6 +179,8 @@ const graph = [
         <aside class="topic-facts" aria-label="Datos de referencia del Parque San Pío">
           <h2>Datos de referencia</h2>
           <dl>
+            <dt>Nombre oficial</dt><dd>Parque Guillermo Sorzano González</dd>
+            <dt>Nombre habitual</dt><dd>Parque San Pío</dd>
             <dt>Sector</dt><dd>Cabecera del Llano, Bucaramanga, Santander</dd>
             <dt>Referencia en Maps</dt><dd>Cra. 33 #45 (referencia de zona, no entrada verificada)</dd>
             <dt>Coordenadas</dt><dd>{SITE_FACTS.coordinates}</dd>
@@ -186,6 +188,7 @@ const graph = [
             <dt>Revisión editorial</dt><dd>{SITE_FACTS.updated}</dd>
           </dl>
           <a class="btn btn-primary topic-map-button" href={SITE_FACTS.mapsUrl} target="_blank" rel="noreferrer">Abrir en Google Maps ↗</a>
+          <p class="topic-facts-note">Nombre oficial y denominación habitual indicados por María Carolina González Páez, subdirectora de Turismo del IMCT de Bucaramanga, en respuesta del 3 de noviembre de 2026. <a href="/#fuentes">Ver fuentes</a>.</p>
           <p class="topic-facts-note">Confirma el punto de acceso y los avisos locales el mismo día de la visita.</p>
         </aside>
 

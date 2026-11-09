@@ -235,7 +235,7 @@ export const ENTORNO_TOPICS: Topic[] = [
     keyword: 'parque san pio o parroquia san pio x',
     intent: 'Distinguir el parque de la parroquia del mismo nombre',
     title: 'Parque San Pío y parroquia San Pío X: no son lo mismo',
-    description: 'Diferencia entre el Parque San Pío (Guillermo Sorzano) y la parroquia San Pío X en Bucaramanga para evitar confusiones al buscar la dirección.',
+    description: 'Diferencia entre el Parque San Pío (Guillermo Sorzano González) y la parroquia San Pío X en Bucaramanga para evitar confusiones al buscar la dirección.',
     h1: 'Parque San Pío y parroquia San Pío X: destinos distintos',
     lead: 'Comparten el nombre, pero son dos lugares diferentes y se buscan por motivos distintos. Esta aclaración evita llegar al sitio equivocado.',
     sections: [
@@ -286,7 +286,7 @@ export const ENTORNO_TOPICS: Topic[] = [
     priority: 'P0',
     keyword: 'historia del parque san pio guillermo sorzano',
     intent: 'Conocer el origen del nombre y las intervenciones documentadas',
-    title: 'Historia del Parque San Pío (Guillermo Sorzano), Bucaramanga',
+    title: 'Historia del Parque San Pío (Guillermo Sorzano González), Bucaramanga',
     description: 'Origen del nombre, la llegada de la escultura de Botero en 2010, la declaratoria cultural de 2013 y las mejoras de paisajismo.',
     h1: 'Historia del Parque San Pío',
     lead: 'Detrás del nombre popular hay una denominación oficial y varias intervenciones documentadas por fuentes públicas. Esta página las ordena sin presentarlas como un estado actual garantizado.',
@@ -294,8 +294,15 @@ export const ENTORNO_TOPICS: Topic[] = [
       {
         heading: 'El nombre oficial y el nombre popular',
         paragraphs: [
-          'El Área Metropolitana de Bucaramanga identifica este espacio como Parque Guillermo Sorzano González, conocido como San Pío. El nombre popular es el que aparece con más frecuencia en búsquedas y en referencias de viaje.',
-          'En algunas fuentes en inglés se usa Saint Pío Park. Esta guía emplea «Parque San Pío» de forma consistente y mantiene la denominación oficial cuando cita a la entidad.'
+          'María Carolina González Páez, subdirectora de Turismo del IMCT de Bucaramanga, confirmó en su respuesta del 3 de noviembre de 2026 que el nombre oficial es Parque Guillermo Sorzano González y que Parque San Pío es la denominación de uso común.',
+          'En algunas fuentes en inglés se usa Saint Pío Park. Esta guía utiliza el nombre popular junto a la denominación oficial para identificar el mismo parque.'
+        ]
+      },
+      {
+        heading: 'El parque y la expansión de Cabecera',
+        paragraphs: [
+          'La publicación Bucaramanga Histórica y Cultural (2012), recomendada por el IMCT, sitúa el parque en la expansión residencial de Cabecera a mediados del siglo XX. Según esa obra, Urbanas S.A. cedió los terrenos al municipio en 1951 y el parque se inauguró en 1964 en memoria del médico y exalcalde Guillermo Sorzano González.',
+          'La obra vincula el nombre popular con la cercanía de la iglesia San Pío X y describe la transformación del parque por la apertura de la carrera 35 a finales de los años ochenta. Son antecedentes históricos, no una descripción garantizada de las instalaciones actuales.'
         ]
       },
       {
@@ -312,7 +319,7 @@ export const ENTORNO_TOPICS: Topic[] = [
           'Son antecedentes de mantenimiento, no una certificación del estado actual de cada instalación ni un inventario de especies. Para el visitante, la lectura práctica es sencilla: el parque que se ve hoy es resultado de cuidados sucesivos y puede seguir cambiando.'
         ],
         bullets: [
-          'Denominación difundida por el AMB: Parque Guillermo Sorzano González.',
+          'Nombre oficial confirmado por el IMCT: Parque Guillermo Sorzano González.',
           '2010: instalación de la escultura de Botero (IMCT).',
           '2013: declaratoria de bien de interés cultural municipal (IMCT).',
           'Paisajismo: más de 3.000 plantas ornamentales y mejoras de senderos (Alcaldía).'
@@ -323,7 +330,7 @@ export const ENTORNO_TOPICS: Topic[] = [
     faqs: [
       {
         q: '¿Por qué tiene dos nombres?',
-        a: 'El popular es San Pío; el oficial difundido por el Área Metropolitana de Bucaramanga es Guillermo Sorzano González.'
+        a: 'El IMCT confirmó que el nombre oficial es Parque Guillermo Sorzano González y que Parque San Pío es el nombre de uso común.'
       },
       {
         q: '¿Cuándo llegó la escultura de Botero?',
@@ -335,7 +342,7 @@ export const ENTORNO_TOPICS: Topic[] = [
       }
     ],
     related: ['escultura-botero', 'flora-y-arboles', 'escultura-mariposa', 'parque-vs-parroquia', 'eventos-y-ferias'],
-    sources: [4, 1, 0, 2],
+    sources: [4, 1, 0, 2, 6],
     article: true
   },
   {
