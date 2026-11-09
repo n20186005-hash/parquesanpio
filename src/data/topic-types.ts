@@ -153,3 +153,4 @@ export function validateTopics(topics: Topic[]): Topic[] {
   }
   return topics;
 }
+
